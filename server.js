@@ -7,9 +7,9 @@ const config = require('./config/config.json');
 const app = express();
 app.set('config', config);
 
-const apiV1Router = require('./routes/api/v1')(app);
+const dogsV1Router = require('./routes/dogs/v1')(app);
 
-app.use('/api/v1', apiV1Router);
+app.use('/dogs/v1', dogsV1Router);
 
 const server = app.listen(config.port, function(err) {
     if (err) {
