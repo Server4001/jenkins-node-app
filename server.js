@@ -12,6 +12,7 @@ const config = require('./config/config.json');
 const app = express();
 
 // MongoDB.
+mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodb);
 
 const mongodb = mongoose.connection;
