@@ -10,7 +10,9 @@
   "author": "Brice Bentler <me@bricebentler.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "4.14.1"
+    "express": "4.14.1",
+    "mongoose": "4.8.4",
+    "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "bluebird": "3.4.1",

@@ -1,0 +1,17 @@
+html
+  head
+    title= title
+  body
+    table
+      thead
+        td ID
+        td Name
+        td Breed
+        td Created At
+      tbody
+        each dog in dogs
+          tr
+            td #{dog._id}
+            td #{dog.name}
+            td #{dog.breed}
+            td #{dog.created_at}
