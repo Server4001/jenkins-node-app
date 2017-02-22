@@ -20,11 +20,13 @@
     "bluebird": "3.4.1",
     "chai": "3.5.0",
     "chai-as-promised": "5.3.0",
+    "istanbul": "0.4.5",
     "mocha": "3.0.1",
     "mocha-jenkins-reporter": "0.2.3",
     "should": "10.0.0",
     "superagent": "2.1.0",
     "superagent-promise": "1.1.0",
-    "supertest": "2.0.0"
+    "supertest": "2.0.0",
+    "tape": "4.6.3"
   }
 }
