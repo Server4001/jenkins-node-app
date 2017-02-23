@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha tests/**/*.js",
+    "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R tap \"./tests/**/*.js\" > ./test.tap && ./node_modules/.bin/istanbul report clover"
   },
   "keywords": [],
   "author": "Brice Bentler <me@bricebentler.com>",
