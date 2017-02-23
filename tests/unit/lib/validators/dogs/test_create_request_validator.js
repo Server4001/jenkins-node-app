@@ -67,7 +67,7 @@ describe('Create Dog Request Validator', () => {
             };
 
             expect(validator.valid(req)).to.equal(false);
-            expect(validator.getErrors()).to.be.a('array');
+            expect(validator.getErrors()).to.be.a('string');
             expect(validator.getErrors()).to.include('Breed must be a non-empty string.');
         });
     });
