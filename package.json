@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/**/*.js",
-    "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R tap \"./tests/**/*.js\" > ./test.tap && ./node_modules/.bin/istanbul report clover"
+    "test": "mocha tests/**/*.js",
+    "test-coverage": "istanbul cover _mocha -- -R tap \"./tests/**/*.js\" > ./test.tap && istanbul report clover"
   },
   "keywords": [],
   "author": "Brice Bentler <me@bricebentler.com>",
@@ -21,6 +21,7 @@
     "bluebird": "3.4.1",
     "chai": "3.5.0",
     "chai-as-promised": "5.3.0",
+    "eslint": "3.16.1",
     "istanbul": "0.4.5",
     "mocha": "3.0.1",
     "should": "10.0.0",

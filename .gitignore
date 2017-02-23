@@ -3,4 +3,6 @@
 /node_modules
 /coverage
 /test.tap
+**/npm-debug.log
+/checkstyle-result.xml
 
