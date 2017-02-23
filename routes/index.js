@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const Dog = require('../models/dog');
 
-module.exports = (app) => {
+module.exports = () => {
 
     // GET / - Index page.
     router.get('/', (req, res) => {
@@ -23,7 +23,7 @@ module.exports = (app) => {
 
             res.render('index', {
                 dogs,
-                title: 'Jenkins Node.js App',
+                title: 'Jenkins Node.js App'
             });
         });
     });
