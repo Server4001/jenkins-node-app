@@ -1,4 +1,5 @@
 {
-    "port": 8080,
-    "mongodb": "mongodb://127.0.0.1:27017/jenkins_node"
+    "port": 8086,
+    "mongodb": "mongodb://127.0.0.1:27017/jenkins_node",
+    "dogs_api_base": "http://localhost:8086"
 }
