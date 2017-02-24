@@ -75,6 +75,36 @@ module.exports = (app) => {
         });
     }
 
+    const updateDogCallback = (req, res) => {
+
+        // Find the dog by id.
+        Dog.findById(req.params.dog_id, (err, dog) => {
+            if (err) {
+                jsendHelper.fail(res, { message: 'Cannot find dog. ' + err }, 404);
+
+                return;
+            }
+
+            if (req.body.name) {
+                dog.name = req.body.name;
+            }
+            if (req.body.breed) {
+                dog.breed = req.body.breed;
+            }
+
+            dog.save((err) => {
+                if (err) {
+                    console.error(err);
+                    jsendHelper.error(res, { message: 'Unable to save dog to database. ' + err });
+
+                    return;
+                }
+
+                jsendHelper.success(res, { dog });
+            });
+        });
+    };
+
     router.route('/:dog_id')
 
         // GET /dogs/v1/:dog_id - Get Dog.
@@ -93,35 +123,10 @@ module.exports = (app) => {
         })
 
         // PUT /dogs/v1/:dog_id - Update Dog.
-        .put((req, res) => {
+        .put(updateDogCallback)
 
-            // Find the dog by id.
-            Dog.findById(req.params.dog_id, (err, dog) => {
-                if (err) {
-                    jsendHelper.fail(res, { message: 'Cannot find dog. ' + err }, 404);
-
-                    return;
-                }
-
-                if (req.body.name) {
-                    dog.name = req.body.name;
-                }
-                if (req.body.breed) {
-                    dog.breed = req.body.breed;
-                }
-
-                dog.save((err) => {
-                    if (err) {
-                        console.error(err);
-                        jsendHelper.error(res, { message: 'Unable to save dog to database. ' + err });
-
-                        return;
-                    }
-
-                    jsendHelper.success(res, { dog });
-                });
-            });
-        })
+        // PATCH /dogs/v1/:dog_id - Update Dog.
+        .patch(updateDogCallback)
 
         // DELETE /dogs/v1/:dog_id - Remove Dog.
         .delete((req, res) => {
