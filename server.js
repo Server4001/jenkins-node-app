@@ -12,6 +12,9 @@ const config = require('./config/config.json');
 // Create application object.
 const app = express();
 
+// Add config to app container.
+app.set('config.json', config);
+
 // MongoDB.
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodb);

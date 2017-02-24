@@ -1,0 +1,6 @@
+{
+    "port": 8080,
+    "mongodb": "mongodb://mongodb.whatever.com:27017/jenkins_node",
+    "dogs_api_base": "http://localhost:8080",
+    "allow_delete_all_dogs": false
+}

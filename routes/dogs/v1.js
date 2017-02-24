@@ -18,12 +18,12 @@ module.exports = (app) => {
 
                 if (err) {
                     console.error(err);
-                    jsendHelper.error(res, {message: 'Unable to find all dogs. ' + err});
+                    jsendHelper.error(res, { message: 'Unable to find all dogs. ' + err });
 
                     return;
                 }
 
-                jsendHelper.success(res, {dogs});
+                jsendHelper.success(res, { dogs });
             });
         })
 
@@ -36,7 +36,7 @@ module.exports = (app) => {
 
             // Validate POST payload.
             if (!validator.valid(req)) {
-                jsendHelper.fail(res, {errors: validator.getErrors()});
+                jsendHelper.fail(res, { errors: validator.getErrors() });
 
                 return;
             }
@@ -47,7 +47,7 @@ module.exports = (app) => {
             dog.save((err) => {
                 if (err) {
                     console.error(err);
-                    jsendHelper.error(res, {message: 'Unable to save dog to database. ' + err});
+                    jsendHelper.error(res, { message: 'Unable to save dog to database. ' + err });
 
                     return;
                 }
@@ -57,6 +57,24 @@ module.exports = (app) => {
             });
         });
 
+    // Disable delete all dogs route in production environments.
+    if (app.get('config.json').allow_delete_all_dogs) {
+
+        // DELETE /dogs/v1 - Delete All Dogs.
+        router.delete('/', (req, res) => {
+            Dog.remove({}, (err) => {
+                if (err) {
+                    console.error(err);
+                    jsendHelper.error(res, { message: 'Unable to delete all dogs. ' + err });
+
+                    return;
+                }
+
+                jsendHelper.success(res, {});
+            });
+        });
+    }
+
     router.route('/:dog_id')
 
         // GET /dogs/v1/:dog_id - Get Dog.
@@ -65,12 +83,12 @@ module.exports = (app) => {
             // Find the dog by id.
             Dog.findById(req.params.dog_id, (err, dog) => {
                 if (err || dog === null) {
-                    jsendHelper.fail(res, {message: 'Cannot find dog.'}, 404);
+                    jsendHelper.fail(res, { message: 'Cannot find dog.' }, 404);
 
                     return;
                 }
 
-                jsendHelper.success(res, {dog});
+                jsendHelper.success(res, { dog });
             });
         })
 
@@ -80,7 +98,7 @@ module.exports = (app) => {
             // Find the dog by id.
             Dog.findById(req.params.dog_id, (err, dog) => {
                 if (err) {
-                    jsendHelper.fail(res, {message: 'Cannot find dog. ' + err}, 404);
+                    jsendHelper.fail(res, { message: 'Cannot find dog. ' + err }, 404);
 
                     return;
                 }
@@ -95,12 +113,12 @@ module.exports = (app) => {
                 dog.save((err) => {
                     if (err) {
                         console.error(err);
-                        jsendHelper.error(res, {message: 'Unable to save dog to database. ' + err});
+                        jsendHelper.error(res, { message: 'Unable to save dog to database. ' + err });
 
                         return;
                     }
 
-                    jsendHelper.success(res, {dog});
+                    jsendHelper.success(res, { dog });
                 });
             });
         })
@@ -111,7 +129,7 @@ module.exports = (app) => {
                 _id: req.params.dog_id
             }, (err, dog) => {
                 if (err) {
-                    jsendHelper.fail(res, {message: 'Unable to delete dog from database. ' + err}, 404);
+                    jsendHelper.fail(res, { message: 'Unable to delete dog from database. ' + err }, 404);
 
                     return;
                 }
