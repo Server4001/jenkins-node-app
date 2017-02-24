@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
+const reqPropsMiddleware = require('./lib/middleware/request_properties');
 
 // Load config file.
 const config = require('./config/config.json');
@@ -21,8 +22,12 @@ mongodb.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // Set view engine.
 app.set('view engine', 'pug');
 
-// Allow for parsing request body into JSON.
+// Allow params in URIs, and parsing request body into JSON.
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Additional middleware.
+app.use(reqPropsMiddleware);
 
 // Add CORS.
 app.use((req, res, next) => {
