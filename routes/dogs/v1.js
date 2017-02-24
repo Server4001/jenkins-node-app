@@ -70,11 +70,12 @@ module.exports = (app) => {
                     return;
                 }
 
-                jsendHelper.success(res, {});
+                jsendHelper.success(res, {}, 204);
             });
         });
     }
 
+    // Define callback for updating a single dog by id.
     const updateDogCallback = (req, res) => {
 
         // Find the dog by id.
@@ -139,7 +140,7 @@ module.exports = (app) => {
                     return;
                 }
 
-                jsendHelper.success(res, {});
+                jsendHelper.success(res, {}, 204);
             });
         });
 
